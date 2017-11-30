@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    {% load staticfiles %}
+    <link rel="stylesheet" href="{% static 'bootstrap-4/dropdown/bootstrap-theme.min.css' %}"/>
+    <link rel="stylesheet" href="{% static 'bootstrap-4/dropdown/bootstrap.min.css' %}"/>
+    <script src="{% static 'bootstrap-4/dropdown/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap-4/dropdown/bootstrap.min.js' %}"/></script>
+    <script src="{% static 'js/jquery3.2.1.js' %}"></script>
+    <script type="text/javascript">
+      $(document).on('ready', function(){
+        $.ajax({
+          type: "GET",
+          contentType:"aplicaction/json: charset=utf-8",
+          dateType:"json",
+          url:"/comentarios/",
+          success:function(response){
+            var i = (response.length-1);
+            for(i;i<=(response.length-1){
+              $('#Usuarios').append("<li>" + response[i].fields.usuario + "   " + response[i].fields.correo + "</li>");
+            })
+          }
+        });
+      });
+    </script>
+    <title>{% block title %}{% endblock %}</title>
+    <style>
+      body {
+        position: relative;
+      }
+      #main_nav {padding-top:0px;height:50px;color: #fff; background-color: #000000;}
+      #nav_botones{padding-left:10px;padding-top:15px}
+      #botones{height:30px}
+      #body {padding-top:60px;height:500px;color: #000000; background-color: #ffffff;}
+      #respuestas {padding-left:20px}
+    </style>
+  </head>
+  <header>
+    <nav class="nabar navbar-default navbar-fixed-top">
+      <div id="main_nav" class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/index/">Tweette Ray</a>
+        </div>
+        {% if not request.user.is_authenticated %}
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/login/">Iniciar Sesión</a></li>
+            <li><a href="/signup/">Registrarse</a></li>
+          </ul>
+        {% else %}
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/perfil/">Mi Perfil</a></li>
+          <li><a href="/logout/">Cerrar Sesión</a></li>
+        </ul>
+        {% endif %}
+      </div>
+    </nav>
+  </header>
+  {% block body %}
+  {% endblock %}
+</html>

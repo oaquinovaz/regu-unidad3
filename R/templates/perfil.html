@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Perfil{% endblock %}
+{% block body %}
+<body id=body>
+  <div>
+    {{user}}
+    {{usuario.telefono}}
+    {% for c in comentarios %}
+      {% ifequal c.usuario user %}
+        <div>
+            <blockquote><strong>{{ c.usuario }}:</strong> {{c.comentario}}</blockquote>
+        </div>
+        {% for r in respuestas %}
+          {% ifequal c.id_comentario 2 %}
+            <div id=respuestas>
+                <blockquote><strong>{{ r.usuario }}:</strong> {{r.respuesta}}</blockquote>
+            </div>
+          {% endifequal %}
+        {% endfor %}
+      {% endifequal %}
+    {% endfor %}
+  </div>
+</body>
+{% endblock %}

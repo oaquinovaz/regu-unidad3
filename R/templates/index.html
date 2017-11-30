@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Tweette Ray{% endblock %}
+{% block body %}
+<body id=body>
+     <h1>Json ... XD </h1>
+     <ul class="nav nav-list" id="Usuarios">
+       <li class="nav-header">Usuarios: </li>
+     </ul>
+  <div>
+    {% for c in comentarios %}
+      <blockquote><strong>{{ c.usuario }}:</strong> {{c.comentario}}</blockquote>
+      {% for r in respuestas %}
+        {% ifequal c.id_comentario 2 %}
+          <div id=respuestas>
+              <blockquote><strong>{{ r.usuario }}:</strong> {{r.respuesta}}</blockquote>
+          </div>
+        {% endifequal %}
+          <!--<div id=respuestas>
+              {{r.id_comentario}}
+              <blockquote><strong>{{ r.usuario }}:</strong> {{r.respuesta}}</blockquote>
+          </div>-->
+      {% endfor %}
+    {% endfor %}
+  </div>
+</body>
+{% endblock %}
